@@ -15,7 +15,7 @@ pipeline {
         stage('📥 Checkout') {
             steps {
                 git branch: "${env.BRANCH_NAME ?: 'main'}",
-                    url: 'https://github.com/NPT0116/thanh-microservices-spring.git'
+                    url: 'https://github.com/huy37204/huy-microservices-spring.git'
             }
         }
 
@@ -72,7 +72,7 @@ pipeline {
                         isUnix() ? sh(loginCmd) : bat(loginCmd)
 
                         changedServices.each { svc ->
-                            def image = "npt1601/${svc}:${commitId}"
+                            def image = "huy37204/${svc}:${commitId}"
                             def buildCmd = isUnix()
                                 ? "./mvnw -pl spring-petclinic-${svc} spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=${image}"
                                 : "mvnw.cmd -pl spring-petclinic-${svc} spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=${image}"
